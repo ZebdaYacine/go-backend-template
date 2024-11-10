@@ -25,6 +25,9 @@ func Setup(db database.Database, gin *gin.Engine) {
 	// All Public APIs
 	public.NewPingRouter(db, publicRouter)
 	public.NewLoginRouter(db, publicRouter)
+	public.NewRecieveEmailRouter(publicRouter)
+	public.NewRecieveOTPRouter(publicRouter)
+	public.NewForgetPwdRouter(db, publicRouter)
 
 	userRouter := gin.Group("/profile")
 
@@ -34,14 +37,6 @@ func Setup(db database.Database, gin *gin.Engine) {
 		"User"))
 
 	//Auth API
-	private.NewGetPensionRouter(db, userRouter)
+	private.NewGetProfileRouter(db, userRouter)
 
-	adminRouter := gin.Group("/admin")
-
-	//Middleware to verify AccessToken
-	adminRouter.Use(middleware.JwtAuthMiddleware(
-		pkg.GET_ROOT_SERVER_SEETING().SECRET_KEY,
-		"Admin"))
-
-	private.NewUpdatePensionRateRouter(db, adminRouter)
 }

@@ -12,7 +12,7 @@ type PingController struct {
 }
 
 // HANDLE WITH LOGIN ACCOUNT REQUEST
-func (ic *PensionController) PingRequest(c *gin.Context) {
+func (ic *PingController) PingRequest(c *gin.Context) {
 	log.Println("************************ RECIEVE PING REQUEST ************************")
 
 	c.JSON(http.StatusOK, model.SuccessResponse{

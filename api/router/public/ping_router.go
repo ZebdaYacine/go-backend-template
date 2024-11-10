@@ -8,6 +8,6 @@ import (
 )
 
 func NewPingRouter(db database.Database, group *gin.RouterGroup) {
-	ic := &controller.PensionController{}
+	ic := &controller.PingController{}
 	group.GET("ping", ic.PingRequest)
 }
